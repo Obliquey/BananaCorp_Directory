@@ -22,7 +22,7 @@ const Login = (props) => {
             // console.log(data);
             if(response.ok) {
                 setUser(data);
-                navigate("/profile");
+                navigate("/directory");
             } else {
                 throw new Error(data.message || "Login failed");
             }
