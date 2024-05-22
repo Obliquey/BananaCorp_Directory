@@ -6,13 +6,12 @@ const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const setLogin = props.login;
+    const setIsLoggedIn = props.setIsLoggedIn;
+    const setUser = props.setUser;
 
     const login = async () => {
-        // setLogin(true);
-        // navigate("/home");
-        console.log("Here we are:", username, password)
         try {
+            console.log("In our login function")
             const response = await fetch(`http://localhost:3000/login`, {
                 method: 'POST',
                 headers: {
@@ -21,12 +20,12 @@ const Login = (props) => {
                 body: JSON.stringify({username, password}),
             });
             const data = await response.json();
-            if(data.uid) {
-                // setUser({
-                //     username, 
-                //     uid: data.uid // Storing the uid returned from the server
-                // });
-                setLogin(true);
+            console.log(data);
+            if(response.ok) {
+                setUser(
+                    username
+                );
+                setIsLoggedIn(true);
                 navigate("/home");
             } else {
                 throw new Error(data.message || "Login failed");
@@ -37,7 +36,6 @@ const Login = (props) => {
     };
 
     const handleLogin = async (event) => {
-        console.log("What's happening?")
         event.preventDefault();
         login();
     };

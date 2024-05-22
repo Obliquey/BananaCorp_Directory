@@ -53,17 +53,18 @@ app.get("/employees/:name", async(req, res) => {
 
 
 app.post("/login", async (req, res) => {
-    const {username} = req.body;
-    const {password} = req.body;
+    const {username, password} = req.body;
     try {
-        const client = await MongoClient.connect(url);
-        const db = client.db(dbName);
-        const collection = db.collection(collectionName);
+        const user = await collection.findOne({'userInfo.username':`${username}`});
+        const pWord = await collection.findOne({'userInfo.password':`${password}`});
 
-        const user = collection.find()
-        res.status(200).send("Good job");
+        if(user.userInfo.username == username && pWord.userInfo.password == password){
+            res.status(200).send(user);
+        } else {
+            throw new Error("Invalide username or password");
+        }
     } catch (error) {
-        console.error("Error in route /login", error)
+        res.status(400).send("Error loggin in:", error);
     }
 });
 

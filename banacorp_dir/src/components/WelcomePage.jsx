@@ -7,7 +7,7 @@ const Welcome = (props) => {
         <>
             <h1>BananaCorp Employee Directory</h1>
             <div>
-                <Login login={props.login} />
+                <Login setIsLoggedIn={props.setIsLoggedIn} setUser={props.setUser}/>
                 <p>Or</p>
                 <RegisterForm />
             </div>
