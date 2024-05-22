@@ -29,9 +29,10 @@ app.get("/employees", async(req, res) => {
     }
 });
 
+// Search for employee based on their unique ID number
 app.get("/employees/:id", async(req, res) => {
     try {
-        const employee = await collection.findOne({"employeeData.id" : +req.params.id})
+        const employee = await collection.findOne({'employeeInfo.id' : +req.params.id})
         res.json(employee);
     } catch (err) {
         console.error("Error:", err);
@@ -39,15 +40,14 @@ app.get("/employees/:id", async(req, res) => {
     }
 });
 
-app.get("/employees/:name", async(req, res) => {
+app.get('/employees/:name', async (req, res) => {
     try {
-        const { searchTerm } = req.params
-        const regexSearch = new RegExp(searchTerm, 'i');
-        const employee = await collection.find({"employeeData.name" : regexSearch})
-        res.json(employee);
+        const { name } = req.params;
+        const employees = await collection.find({ 'employeeInfo.name': { $regex: name, $options: 'i' } });
+        res.json(employees);
     } catch (err) {
-        console.error("Error:", err);
-        res.status(500).send("Something went wrong when trying to get employee data.");
+        console.error('Error:', err);
+        res.status(500).send('Something went wrong when trying to get employee data.');
     }
 });
 
