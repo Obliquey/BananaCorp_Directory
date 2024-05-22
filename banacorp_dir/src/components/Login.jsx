@@ -19,10 +19,10 @@ const Login = (props) => {
                 body: JSON.stringify({username, password}),
             });
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             if(response.ok) {
-                setUser({data});
-                navigate("/directory");
+                setUser(data);
+                navigate("/profile");
             } else {
                 throw new Error(data.message || "Login failed");
             }
