@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react';
+import './App.css';
+import Welcome from './components/WelcomePage';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useNavigate
+} from "react-router-dom";
+import Home from './components/Home';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // useEffect(() => {
+  // }, [])
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Router>
+        <Routes>
+          <Route path='/' element={ <Welcome login={setIsLoggedIn}/> } />
+          <Route path="/home" element={ <Home /> } />
+        </Routes>
+      </Router>
     </>
   )
 }
 
 export default App
+
+{/* Components that we want:
+      1. Login / Registration Page
+        - Registration will have a secondary view for inputing employee information(name, job title, etc)
+        - Login I guess will have Email & password, though I have no idea how to do that
+      2. Navbar (though it will only have links to Personal Profile and Search Directrory)
+        - Maybe we throw in a view to allow employees to see their teams too?
+      3. Personal Profile
+        - Using user ID, display their current information.
+        - Maybe this is where we show team info too, & if the user is a manager, we show team salaries?
+      4. Employee cards to show information. 
+        - Make them clickable to then display more info?
+*/}
