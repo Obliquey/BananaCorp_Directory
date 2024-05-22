@@ -7,6 +7,8 @@ import {
     useNavigate
   } from "react-router-dom";
 import Profile from "./Profile";
+import Navbar from "./Navbar";
+import PredictSalary from "./PredictSalary";
 
 const Home = () => {
     const [employeesData, setEmployeesData] = useState([]);
@@ -28,8 +30,11 @@ const Home = () => {
 
     return(
         <>
-        {/* navbar */}
-        {/* search */}
+        <Navbar />
+        <div><PredictSalary /></div>
+        
+
+        {/* <Search setData={setData}/> */}
             {
                 employeesData.map(employee => employee.employeeInfo.name)
             }
