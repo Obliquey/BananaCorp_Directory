@@ -31,13 +31,29 @@ const Home = () => {
     return(
         <>
         <Navbar />
-        <div><PredictSalary /></div>
+        {/* <div><PredictSalary /></div> */}
         
 
         {/* <Search setData={setData}/> */}
-            {
-                employeesData.map(employee => employee.employeeInfo.name)
-            }
+            <div>
+                <input type="text" />
+            </div>
+            <div style={{display:"flex", flexDirection:"row", flexWrap:"wrap", gap:"1.3rem", justifyContent:"center"}}>
+                {
+                    employeesData.map(employee => {
+
+                        return(
+                            <div class="card" style={{width: "13rem", height:"auto"}}>
+                                <div class="card-body">
+                                    <h5 class="card-title">{employee.employeeInfo.name}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{employee.employeeInfo.jobRole}</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">{employee.employeeInfo.location}</h6>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         </>
     )
 };
