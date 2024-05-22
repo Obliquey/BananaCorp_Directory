@@ -2,13 +2,14 @@ import express from "express";
 import dotenv from "dotenv";
 import { MongoClient, ObjectId } from "mongodb";
 import { promises as fs } from 'fs';
+import cors from 'cors';
 
 dotenv.config();
 process.loadEnvFile();
 
 const app = express();
 app.use(express.json());
-// app.use(cors());
+app.use(cors());
 const PORT = process.env.PORT || 3000;
 
 const url = process.env.MONGO_DB_URL;
@@ -50,6 +51,26 @@ app.get('/employees/:name', async (req, res) => {
     }
 });
 
+
+app.post("/login", async (req, res) => {
+    const {username, password} = req.body;
+    try {
+        const user = await collection.findOne({'userInfo.username':`${username}`});
+        const pWord = await collection.findOne({'userInfo.password':`${password}`});
+
+        if(user.userInfo.username == username && pWord.userInfo.password == password){
+            res.status(200).send(user);
+        } else {
+            throw new Error("Invalide username or password");
+        }
+    } catch (error) {
+        res.status(400).send("Error loggin in:", error);
+    }
+});
+
+app.post("/register", async (req, res) => {
+
+})
 // will use later for running on build version
 // app.use(express.static(path));
 

@@ -13,6 +13,7 @@ import Home from './components/Home';
 function App() {
   // need to figure out how to use this boolean state to show other routes.
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
   // May also need to set user info as state here
 
 
@@ -23,7 +24,7 @@ function App() {
     <>
       <Router>
         <Routes>
-            <Route path="/home" element={ isLoggedIn ? <Home /> : <Welcome login={setIsLoggedIn}/>} />
+            <Route path="/" element={ isLoggedIn ? <Home /> : <Welcome setIsLoggedIn={setIsLoggedIn} setUser={setUser}/>} />
         </Routes>
       </Router>
     </>
