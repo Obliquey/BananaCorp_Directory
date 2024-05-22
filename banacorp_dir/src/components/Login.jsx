@@ -1,19 +1,44 @@
 import React, { useState } from 'react';
-// import { useAuth } from '../hooks/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 
 const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    // const { login } = useAuth();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
+    const setLogin = props.login;
+
+    const login = async (username, password) => {
+        setLogin(true);
+        navigate("/home");
+        // try {
+        //     const response = await fetch(`${import.meta.env.VITE_SOCKS_API_URL}/login`, {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({username, password}),
+        //     });
+        //     const data = await response.json();
+        //     if(data.uid) {
+        //         // setUser({
+        //         //     username, 
+        //         //     uid: data.uid // Storing the uid returned from the server
+        //         // });
+        //         setLogin(true);
+        //         navigate("/home");
+        //     } else {
+        //         throw new Error(data.message || "Login failed");
+        //     }
+        // } catch (error) {
+        //     console.error(error);
+        // }
+    };
 
     const handleLogin = async (event) => {
+        console.log("What's happening?")
         event.preventDefault();
-        // await login(username, password);
-        // console.log(username, password);
-        // navigate('/addSock');
+        login();
     };
     return(
         <div className="container">
