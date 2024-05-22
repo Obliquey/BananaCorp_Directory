@@ -4,8 +4,8 @@ import { MongoClient, ObjectId } from "mongodb";
 import { promises as fs } from 'fs';
 import cors from 'cors';
 
-// dotenv.config();
-// process.loadEnvFile();
+dotenv.config();
+process.loadEnvFile();
 
 const app = express();
 app.use(express.json());
