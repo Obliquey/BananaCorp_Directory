@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Profile = (props) => {
     const user = props.user.employeeInfo;
-    console.log("Our user:", user);
+    
     return(
         <>
             <div style={{display:"flex", flexDirection:"column", gap:"2vh", border:"1px solid black", borderRadius:"10px"}}>
