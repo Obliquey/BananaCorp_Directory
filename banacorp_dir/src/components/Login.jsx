@@ -6,7 +6,6 @@ const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const setIsLoggedIn = props.setIsLoggedIn;
     const setUser = props.setUser;
 
     const login = async () => {
@@ -22,11 +21,8 @@ const Login = (props) => {
             const data = await response.json();
             console.log(data);
             if(response.ok) {
-                setUser(
-                    username
-                );
-                setIsLoggedIn(true);
-                navigate("/home");
+                setUser({data});
+                navigate("/directory");
             } else {
                 throw new Error(data.message || "Login failed");
             }
@@ -40,7 +36,7 @@ const Login = (props) => {
         login();
     };
     return(
-        <div className="container">
+        <div className="container" style={{textAlign:"left", border:" 1px solid black", borderRadius:"10px", padding:'10px'}}>
             <form onSubmit={handleLogin} className="mt-5">
                 <div className="form-group">
                     <label htmlFor="username">Username</label>

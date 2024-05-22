@@ -9,12 +9,11 @@ import {
   useNavigate
 } from "react-router-dom";
 import Home from './components/Home';
+import Profile from './components/Profile';
 
 function App() {
   // need to figure out how to use this boolean state to show other routes.
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState({});
-  // May also need to set user info as state here
+  const [user, setUser] = useState();
 
 
   // useEffect(() => {
@@ -23,9 +22,18 @@ function App() {
   return (
     <>
       <Router>
-        <Routes>
-            <Route path="/" element={ isLoggedIn ? <Home /> : <Welcome setIsLoggedIn={setIsLoggedIn} setUser={setUser}/>} />
-        </Routes>
+        {
+          user ?
+          <Routes>
+            <Route path="/profile" element={ <Profile user={user}/> } />
+            <Route path="/directory" element={ <Home /> } />
+          </Routes> 
+          :
+          <Welcome setUser={setUser}/>
+        }
+        {/* {
+          user || <Welcome setUser={setUser}/>
+        } */}
       </Router>
     </>
   )

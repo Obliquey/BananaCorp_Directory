@@ -33,7 +33,7 @@ const RegisterForm = () => {
         }
     };
     return(
-        <div className="container">
+        <div className="container" style={{textAlign:"left", border:" 1px solid black", borderRadius:"10px", padding:'10px'}}>
             <form onSubmit={handleRegister} className="mt-5">
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
