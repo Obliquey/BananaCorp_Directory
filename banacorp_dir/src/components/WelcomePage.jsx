@@ -1,11 +1,16 @@
 import Login from "./Login";
+import RegisterForm from "./Register";
 
 const Welcome = (props) => {
 
     return(
         <>
             <h1>BananaCorp Employee Directory</h1>
-            <Login login={props.login} />
+            <div>
+                <Login login={props.login} />
+                <p>Or</p>
+                <RegisterForm />
+            </div>
         </>
     );
 };
