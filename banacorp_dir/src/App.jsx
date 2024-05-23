@@ -11,6 +11,7 @@ import {
 import Home from './components/Home';
 import Profile from './components/Profile';
 import Navbar from './components/Navbar';
+import PredictSalary from './components/PredictSalary';
 
 function App() {
   // need to figure out how to use this boolean state to show other routes.
@@ -30,6 +31,7 @@ function App() {
             <Routes>
               <Route path="/profile" element={ <Profile user={user}/> } />
               <Route path="/directory" element={ <Home  user={user}/> } />
+              <Route path="/calculator" element={ <PredictSalary /> } />
             </Routes> 
           </>
           :

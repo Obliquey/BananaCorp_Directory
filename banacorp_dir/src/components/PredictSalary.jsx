@@ -1,41 +1,59 @@
 import { useState } from "react";
 
 const PredictSalary = () => {
-    return (
-        <>
-            <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Job Title
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Software Engineer</a>
-                    <a class="dropdown-item" href="#">Data Scientist</a>
-                    <a class="dropdown-item" href="#">Product Manager</a>
-                    <a class="dropdown-item" href="#">Designer</a>
-                    <a class="dropdown-item" href="#">QA Engineer</a>
-                    <a class="dropdown-item" href="#">DevOps Engineer</a>
-                    <a class="dropdown-item" href="#">System Administrator</a>
-                </div>
-            </div>
-            <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Work Location
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item">New York</a>
-                    <a class="dropdown-item">San Francisco</a>
-                    <a class="dropdown-item">Los Angeles</a>
-                    <a class="dropdown-item">Chicago</a>
-                    <a class="dropdown-item">Houston</a>
-                    <a class="dropdown-item">Phoenix</a>
-                    <a class="dropdown-item">Philadelphia</a>
-                    <a class="dropdown-item">San Antonio</a>
-                    <a class="dropdown-item">San Diego</a>
-                    <a class="dropdown-item">Dallas</a>
-                </div>
-            </div>
-        </>
-    )
-}
+    const [jobTitle, setJobTitle] = useState('');
+    const [location, setLocation] = useState('');
+    const [estimatedSalary, setEstimatedSalary] = useState('');
 
-export default PredictSalary
+    // function to ask model to predict salary
+    // const fetchSalary = async () => {
+    //     const url = //this will be the URL for the prediction model endpoint
+    //     try {
+    //         const response = await fetch(`${url}`).then(red => {
+    //             console.log("What did we get?", res);
+    //         })
+    //     } catch (error) {
+            
+    //     }
+    // };
+
+    return (
+        <div style={{display:"flex", flexDirection:"column",justifyContent:"center",gap:"12vh", position:"fixed", top:"10vh", left:"50%", transform: "translate(-50%, 0)"}}>
+            <h2>Please input your job title and work location</h2>
+            {
+                <h4>{estimatedSalary}</h4>
+            }
+            <div style={{display:"flex", flexDirection:"row", gap:"4vw", marginLeft:"auto", marginRight:"auto"}}>
+                <div className="dropdown">
+                    <select className="btn dropdown-toggle" style={{backgroundColor:"lightblue"}} value={jobTitle} onChange={e=> setJobTitle(e.target.value)}>
+                        <option class="dropdown-item" value="">Select One...</option>
+                        <option class="dropdown-item" value="Software Engineer">Software Engineer</option>
+                        <option class="dropdown-item" value="Data Scientist">Data Scientist</option>
+                        <option class="dropdown-item" value="Product Manager">Product Manager</option>
+                        <option class="dropdown-item" value="Designer">Designer</option>
+                        <option class="dropdown-item" value="QA Engineer">QA Engineer</option>
+                        <option class="dropdown-item" value="DevOps Engineer">DevOps Engineer</option>
+                        <option class="dropdown-item" value="System Administrator">System Administrator</option>
+                    </select>
+                </div>
+                <div className="dropdown">
+                    <select className="btn dropdown-toggle" style={{backgroundColor:"lightblue"}} value={location} onChange={e=> setLocation(e.target.value)}>
+                        <option class="dropdown-item" value="">Select One...</option>
+                        <option class="dropdown-item" value="New York">New York</option>
+                        <option class="dropdown-item" value="San Francisco">San Francisco</option>
+                        <option class="dropdown-item" value="Los Angeles">Los Angeles</option>
+                        <option class="dropdown-item" value="Chicago">Chicago</option>
+                        <option class="dropdown-item" value="Houston">Houston</option>
+                        <option class="dropdown-item" value="Phoenix">Phoenix</option>
+                        <option class="dropdown-item" value="Philadelphia">Philadelphia</option>
+                        <option class="dropdown-item" value="San Antonio">San Antonio</option>
+                        <option class="dropdown-item" value="San Diego">San Diego</option>
+                        <option class="dropdown-item" value="Dallas">Dallas</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default PredictSalary;

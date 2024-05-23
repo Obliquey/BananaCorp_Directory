@@ -17,7 +17,7 @@ const Navbar = () => {
                             <Link to="/profile" style={{marginRight:"2vw",textDecoration:'none', color:"black"}}>Profile</Link>
                         </li>
                         <li>
-                            <Link style={{marginRight:"2vw",textDecoration:'none',color:"black"}}>Salary Calculator</Link>
+                            <Link to="/calculator" style={{marginRight:"2vw",textDecoration:'none',color:"black"}}>Salary Calculator</Link>
                         </li>
                     </ul>
                     
