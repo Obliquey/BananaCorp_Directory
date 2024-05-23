@@ -36,7 +36,7 @@ const Home = (props) => {
         };
     const handleChange = (event) => {
             setSearchTerm(event.target.value);
-
+            console.log("Searching:", searchTerm);
             if(searchTerm == undefined){
                 setShownEmployees(employeesData);
             }else{
