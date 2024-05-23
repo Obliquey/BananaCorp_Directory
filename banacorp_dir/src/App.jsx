@@ -26,7 +26,7 @@ function App() {
           user ?
           <Routes>
             <Route path="/profile" element={ <Profile user={user}/> } />
-            <Route path="/directory" element={ <Home /> } />
+            <Route path="/directory" element={ <Home  user={user}/> } />
           </Routes> 
           :
           <Welcome setUser={setUser}/>
