@@ -39,16 +39,15 @@ const Home = (props) => {
 
     return(
         <>
-        <Navbar />
         {/* <div><PredictSalary /></div> */}
         
 
         {/* <Search setData={setData}/> */}
-            <div class="input-group input-group-lg">
+            <div class="input-group input-group-lg" style={{marginTop:"6vh"}}>
                 {/* <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-lg">Large</span>
                 </div> */}
-                <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
+                <input type="text" class="form-control" placeholder="Search" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
             </div>
             <div style={{display:"flex", flexDirection:"row", flexWrap:"wrap", gap:"1.3rem", justifyContent:"center", marginTop:'2vh'}}>
                 {
