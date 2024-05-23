@@ -1,0 +1,50 @@
+[
+    {
+        "employeeInfo": {
+            "id": 1001,
+            "name": "Zach Gordon-Burns",
+            "phoneNumber": "1234567890",
+            "jobRole": "Software Engineer",
+            "location": "New York",
+            "salary": "99000",
+            "managerID": 1002,
+            "isHR": false
+        },
+        "userInfo": {
+            "username": "zachgb",
+            "password": "BananaMania24"
+        }
+    },
+    {
+        "employeeInfo": {
+            "id": 1002,
+            "name": "Anders Boyum",
+            "phoneNumber": "0987654321",
+            "jobRole": "Data Scientist",
+            "location": "Chicago",
+            "salary": "110000",
+            "managerID": 0,
+            "isHR": false
+        },
+        "userInfo": {
+            "username": "aboyum",
+            "password": "Chiquita1870"
+        }
+    },
+    {
+        "employeeInfo": {
+            "id": 1003,
+            "name": "Hank Randall",
+            "phoneNumber": "4561237890",
+            "jobRole": "System Administrator",
+            "location": "San Francisco",
+            "salary": "125000",
+            "managerID": 0,
+            "isHR": true
+        },
+        "userInfo": {
+            "username": "hrandall",
+            "password": "potassium"
+        }
+    }
+]
