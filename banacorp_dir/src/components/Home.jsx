@@ -12,7 +12,9 @@ import PredictSalary from "./PredictSalary";
 
 const Home = (props) => {
     const [employeesData, setEmployeesData] = useState([]);
+    const [shownEmployees, setShownEmployees] = useState([])
     const [myData, setMyData] = useState({});
+    const [searchTerm, setSearchTerm] = useState('');
     const user = props.user;
 
     async function fetchData(){
@@ -20,38 +22,65 @@ const Home = (props) => {
             const res = await fetch(`http://localhost:3000/employees`)
             const data = await res.json();
             setEmployeesData(data);
+            setShownEmployees(data);
         } catch (error) {
             console.error("Error retrieving data from server:", error)
         }
     };
+    const verifyAuth = (employee) => {
+            if(user.employeeInfo.isHR || employee.employeeInfo.managerID == user.employeeInfo.id || employee.employeeInfo.id == user.employeeInfo.id){
+                return true;
+            } else {
+                return false;
+            }
+        };
+    const handleChange = (event) => {
+            setSearchTerm(event.target.value);
+
+            if(searchTerm == undefined){
+                setShownEmployees(employeesData);
+            }else{
+                const re = new RegExp(searchTerm +'.+$', 'i');
+    
+                const output = employeesData.filter((e, i, a) => {
+                    return e.employeeInfo.name.search(re) != -1;
+                });
+                setShownEmployees(output);
+            }
+        };
+    // const handleSearch = (e) => {
+    //     e.preventDefault();
+    //     if(searchTerm == undefined){
+    //         setShownEmployees(employeesData);
+    //     }else{
+    //         const re = new RegExp(searchTerm +'.+$', 'i');
+
+    //         const output = employeesData.filter((e, i, a) => {
+    //             return e.employeeInfo.name.search(re) != -1;
+    //         });
+    //         setShownEmployees(output);
+    //     }
+    // };
 
     useEffect(() => {
         fetchData();
     }, []);
 
-    const verifyAuth = (employee) => {
-        if(user.employeeInfo.isHR || employee.employeeInfo.managerID == user.employeeInfo.id || employee.employeeInfo.id == user.employeeInfo.id){
-            return true;
-        } else {
-            return false;
-        }
-    };
-
+    
     return(
         <>
         {/* <div><PredictSalary /></div> */}
         
 
-        {/* <Search setData={setData}/> */}
-            <div class="input-group input-group-lg" style={{marginTop:"6vh"}}>
-                {/* <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-lg">Large</span>
-                </div> */}
-                <input type="text" class="form-control" placeholder="Search" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
-            </div>
+            {/* Not sure if we want a form for user to click *search on, or have it hot update while they type? */}
+            <form class="input-group input-group-lg"  style={{marginTop:"6vh", width:"60%", marginLeft:"auto", marginRight:"auto"}}>
+                <input type="text" class="form-control" placeholder="Search" aria-label="Large" aria-describedby="inputGroup-sizing-sm" value={searchTerm}
+                onChange={handleChange}/>
+                {/* <button className="btn btn-outline-info" type="submit">Search</button> */}
+            </form>
             <div style={{display:"flex", flexDirection:"row", flexWrap:"wrap", gap:"1.3rem", justifyContent:"center", marginTop:'2vh'}}>
                 {
-                    employeesData.map(employee => {
+                    shownEmployees.map(employee => {
 
                         return(
                             <div class="card" style={{width: "13rem", height:"auto", padding:"0px"}}>
@@ -77,4 +106,8 @@ const Home = (props) => {
     )
 };
 
+
+// The two things to do:
+    // 1. Create the search component so that it filters which employees are being shown
+    // 2. only show a dozen employees, maybe add pagination?
 export default Home;
