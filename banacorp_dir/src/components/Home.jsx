@@ -48,19 +48,6 @@ const Home = (props) => {
                 setShownEmployees(output);
             }
         };
-    // const handleSearch = (e) => {
-    //     e.preventDefault();
-    //     if(searchTerm == undefined){
-    //         setShownEmployees(employeesData);
-    //     }else{
-    //         const re = new RegExp(searchTerm +'.+$', 'i');
-
-    //         const output = employeesData.filter((e, i, a) => {
-    //             return e.employeeInfo.name.search(re) != -1;
-    //         });
-    //         setShownEmployees(output);
-    //     }
-    // };
 
     useEffect(() => {
         fetchData();
@@ -71,13 +58,11 @@ const Home = (props) => {
         <>
         {/* <div><PredictSalary /></div> */}
         
-
-            {/* Not sure if we want a form for user to click *search on, or have it hot update while they type? */}
-            <form class="input-group input-group-lg"  style={{marginTop:"6vh", width:"60%", marginLeft:"auto", marginRight:"auto"}}>
+            <form class="input-group input-group-lg"  style={{marginTop:"6vh", width:"60%", marginLeft:"auto",  marginRight:"auto"}}>
                 <input type="text" class="form-control" placeholder="Search" aria-label="Large" aria-describedby="inputGroup-sizing-sm" value={searchTerm}
                 onChange={handleChange}/>
-                {/* <button className="btn btn-outline-info" type="submit">Search</button> */}
             </form>
+
             <div style={{display:"flex", flexDirection:"row", flexWrap:"wrap", gap:"1.3rem", justifyContent:"center", marginTop:'2vh'}}>
                 {
                     shownEmployees.map(employee => {
