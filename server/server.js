@@ -61,10 +61,10 @@ app.post("/login", async (req, res) => {
         if(user.userInfo.username == username && pWord.userInfo.password == password){
             res.status(200).send(user);
         } else {
-            throw new Error("Invalide username or password");
+            throw Error("Invalide username or password");
         }
     } catch (error) {
-        res.status(400).send("Error loggin in:", error);
+        res.status(401).send("Error loggin in:", error);
     }
 });
 
