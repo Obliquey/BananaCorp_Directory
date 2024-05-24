@@ -75,6 +75,7 @@ const Home = (props) => {
                                     <div style={{}}>
                                         <h6 className="card-subtitle mb-3 text-muted">{employee.employeeInfo.jobRole}</h6>
                                         <h6 className="card-subtitle mb-3 text-muted">{employee.employeeInfo.location}</h6>
+                                        <h6 className="card-subtitle mb-3 text-muted">{employee.employeeInfo.phoneNumber}</h6>
                                         {
                                             verifyAuth(employee) ?
                                             <h6 className="card-subtitle mb-3 text-muted">${employee.employeeInfo.salary}</h6>
