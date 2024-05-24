@@ -5,7 +5,7 @@ import { promises as fs } from 'fs';
 import cors from 'cors';
 
 dotenv.config();
-process.loadEnvFile();
+// process.loadEnvFile();
 
 const app = express();
 app.use(express.json());
