@@ -14,12 +14,8 @@ import Navbar from './components/Navbar';
 import PredictSalary from './components/PredictSalary';
 
 function App() {
-  // need to figure out how to use this boolean state to show other routes.
   const [user, setUser] = useState();
 
-
-  // useEffect(() => {
-  // }, [])
 
   return (
     <>
@@ -27,7 +23,7 @@ function App() {
         {
           user ?
           <>
-            <Navbar />
+            <Navbar setUser={setUser}/>
             <Routes>
               <Route path="/profile" element={ <Profile user={user}/> } />
               <Route path="/directory" element={ <Home  user={user}/> } />

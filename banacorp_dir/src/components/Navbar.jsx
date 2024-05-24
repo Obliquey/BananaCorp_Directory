@@ -1,6 +1,12 @@
-import { Link } from "react-router-dom";
-const Navbar = () => {
+import { Link, useNavigate } from "react-router-dom";
+const Navbar = (props) => {
+    const setUser = props.setUser;
+    const navigate = useNavigate();
 
+    const logout = () => {
+        setUser('');  
+        navigate("/")
+    };
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary" id="navbar">
             <div className="container-fluid">
@@ -11,17 +17,18 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link to="/directory" style={{marginRight:"2vw",textDecoration:'none', color:"black"}}>Home</Link>
+                            <Link to="/directory"  style={{marginRight:"2vw",textDecoration:'none', color:"black"}}>Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/profile" style={{marginRight:"2vw",textDecoration:'none', color:"black"}}>Profile</Link>
+                            <Link to="/profile"  style={{marginRight:"2vw",textDecoration:'none', color:"black"}}>Profile</Link>
                         </li>
-                        <li>
-                            <Link to="/calculator" style={{marginRight:"2vw",textDecoration:'none',color:"black"}}>Salary Calculator</Link>
+                        <li className="nav-item">
+                            <Link to="/calculator"  style={{marginRight:"2vw",textDecoration:'none',color:"black"}}>Salary Calculator</Link>
                         </li>
                     </ul>
                     
                 </div>
+                <Link className="nav-item" id="logout" style={{textDecoration:"none", color:"black"}} onClick={logout}>Logout</Link>
             </div>
         </nav>
     )

@@ -76,3 +76,22 @@ button:focus-visible {
   z-index: 1;
   box-shadow: 1px 1px 7px lightblue;
 }
+
+.nav-item{
+  opacity: 100%;
+  height: 6vh;
+  line-height: 6vh;
+  padding-left: 2vw;
+  text-align: center;
+  background-color: inherit;
+  border-radius: 5px;
+  transition: opacity .4s, background-color .4s;
+}
+.nav-item:hover{
+  opacity: 70%;
+  background-color: rgb(220, 219, 219);
+}
+
+#logout{
+  padding-right: 2vw;
+}
